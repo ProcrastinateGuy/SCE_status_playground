@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  - job_name: 'sce_status_api'
+    static_configs:
+      - targets: ['sce_status_api:15000']

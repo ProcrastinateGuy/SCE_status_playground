@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  sce_status_api:
+    container_name: sce_status_api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: 'on-failure'
+    ports:
+      - "15000:15000"
+
+  prometheus:
+    image: prom/prometheus:latest
+    restart: 'always'
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - "9090:9090"
